@@ -3,7 +3,10 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Biblioteca {
-    public static void main(String[] args) {
+
+
+
+        public static void main(String[] args) {
         //ingreso de datos:
         Scanner sc = new Scanner(System.in);
         String eleccion = "";
@@ -12,8 +15,40 @@ public class Biblioteca {
                     "1. Registrar Usuario\n2. Registrar libro\n3. Registrar prestamo\n4. Registrar devolución\n5. Ver libros\n6. Ver prestamos\n7. Salir\nElige:");
             eleccion = sc.nextLine();
             if (eleccion.equals("1")) {
-                Usuario.crearUsuario("Francisco","15727883-5",'M',"Ing.",false);
-            }/*
+                System.out.println(
+                        "1. Registrar Estudiante\n2. Registrar Docente\n");
+                eleccion = sc.nextLine();
+                if (eleccion.equals("1")){
+                    System.out.println("Ingrese Run: ");
+                    String run = sc.nextLine();
+                    System.out.println("Ingrese Nombre Completo: ");
+                    String nombre = sc.nextLine();
+                    //System.out.println("Ingrese genero (M / F): ");
+                    String genero;
+                    do {
+                        System.out.println("Ingrese genero (M / F): ");
+                        genero = sc.nextLine();
+                        if (!Usuario.validarGenero(genero)) {
+                            System.out.println("Entrada no válida. Por favor, ingrese M o F.");
+                        }
+
+                    } while (!Usuario.validarGenero(genero));
+
+                    System.out.println("Ingrese Carrera: ");
+                    String carrera = sc.nextLine();
+
+
+                    Usuario.crearEstudiante(nombre,run,genero,carrera);
+
+                }
+                if (eleccion.equals("2")){
+                    //Usuario.crearDocente();
+                    System.out.println("es docente");
+                }
+
+            }
+
+            /*
             if (eleccion.equals("2")) {
                 ControladorLibros.solicitarDatosParaRegistrar();
             }
@@ -31,10 +66,10 @@ public class Biblioteca {
             }
             if (eleccion.equals("7")) {
                 ControladorSocios.imprimirSociosNoFiables(ControladorSocios.obtener());
-            }
-            if (eleccion.equals("8")) {
-                ControladorLibros.solicitarDatosParaCambiarSignatura();
             }*/
+            if (eleccion.equals("7")) {
+                System.exit(0);
+            }
 
         }
 
@@ -42,11 +77,11 @@ public class Biblioteca {
         // GENERAMOS DATOS DE USUARIOS BASE
         ArrayList<Usuario> usuarios = new ArrayList<Usuario>(
                 Arrays.asList(
-                        new Usuario("Juan Perez", "12345678-9", 'M', "Ingenieria Informática", true ),
+                       /* new Usuario("Juan Perez", "12345678-9", 'M', "Ingenieria Informática", true ),
                         new Usuario("María Gonzalez", "98765432-1", 'F', "Medicina", false),
                         new Usuario("Carlos Rodriguez", "34567890-1",'M', "Derecho", true ),
                         new Usuario("Ana López", "56789012-3", 'F', "Psicología", false ),
-                        new Usuario("Pedro Martinez", "89012345-6", 'M', "Arquitectura", true )
+                        new Usuario("Pedro Martinez", "89012345-6", 'M', "Arquitectura", true )*/
                 )
         );
         ArrayList<Libro> listaLibros = new ArrayList<Libro>(
@@ -85,3 +120,4 @@ public class Biblioteca {
         System.out.println(listaLibros);
     }
 }
+
