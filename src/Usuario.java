@@ -2,12 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Scanner;
 
 public class Usuario {
 
     public String nombreCompleto;
     private String RUN;
-    private char genero;
+    private String genero;
     public String carrera;
     private boolean prestamo;
     private String prestamoISBN;
@@ -17,7 +18,7 @@ public class Usuario {
     private String grado;
 
 
-    public Usuario(String nombreCompleto, String RUN, char genero, String carrera, boolean esDocente) {
+    public Usuario(String nombreCompleto, String RUN, String genero, String carrera, boolean esDocente) {
         this.nombreCompleto = nombreCompleto;
         this.RUN = RUN;
         this.genero = genero;
@@ -27,7 +28,6 @@ public class Usuario {
         this.esDocente = esDocente;
         this.profesion = "";
     }
-
 
     public String getNombreCompleto() {
         return nombreCompleto;
@@ -45,11 +45,11 @@ public class Usuario {
         this.RUN = RUN;
     }
 
-    public char getGenero() {
+    public String getGenero() {
         return genero;
     }
 
-    public void setGenero(char genero) {
+    public void setGenero(String genero) {
         this.genero = genero;
     }
 
@@ -104,11 +104,11 @@ public class Usuario {
     private static List<Usuario> usuarios = new ArrayList<>();
 
 
-    public boolean validarGenero (char genero){
-        return genero == 'M' || genero == 'F';
+    //Validador de genero
+    public static boolean validarGenero (String genero){
+        return genero.equalsIgnoreCase("M") || genero.equalsIgnoreCase("F");
     }
 
-    // logica para validar formato
 
     public static boolean validarRUN(String RUN) {
         String regex = "^\\d{7,8}-[0-9Kk]$";
@@ -136,20 +136,21 @@ public class Usuario {
 
     }
 
-    public static Usuario crearUsuario(String nombreCompleto, String RUN, char genero, String carrera, boolean esDocente) {
+    /*public static Usuario crearUsuario(String nombreCompleto, String RUN, String genero, String carrera, boolean esDocente) {
         for (Usuario u : usuarios) {
             if (u.getRUN().equals(RUN)) {
                 System.out.println("Error: El RUN ya está registrado.");
                 return null;
             }
+
         }
 
         Usuario nuevoUsuario = new Usuario(nombreCompleto, RUN, genero, carrera, esDocente);
         usuarios.add(nuevoUsuario);
         return nuevoUsuario;
-    }
+    }*/
 
-    public void editarUsuario(String nombreCompleto, char genero, String carrera, boolean esDocente) {
+    public void editarUsuario(String nombreCompleto, String genero, String carrera, boolean esDocente) {
         Usuario usuarioAEditar = null;
         for (Usuario u : usuarios) {
             if (u.getRUN().equals(RUN)) {
@@ -186,19 +187,22 @@ public class Usuario {
         }
     }
 
-    public static Usuario crearEstudiante(String nombreCompleto, String RUN, char genero, String carrera) {
-        if (validarRUN(RUN)) {
-            System.out.println("Error: El RUN ya está registrado.");
-            return null;
-        }
-
+    public static Usuario crearEstudiante(String nombreCompleto, String RUN, String genero, String carrera) {
         Usuario nuevoEstudiante = new Usuario(nombreCompleto, RUN, genero, carrera, false);
         usuarios.add(nuevoEstudiante);
 
+        for (Usuario usuario : usuarios) {
+            System.out.println("Datos registrados correctamente:\n");
+            System.out.println("Nombre Completo: " + usuario.getNombreCompleto());
+            System.out.println("Run: " + usuario.getRUN());
+            System.out.println("Género: " + usuario.getGenero());
+            System.out.println("Carrera: " + usuario.getCarrera());
+            System.out.println("___________________________________");
+        }
         return nuevoEstudiante;
     }
 
-    public static Usuario crearDocente(String nombreCompleto, String RUN, char genero, String carrera, String profesion, String grado) {
+    public static Usuario crearDocente(String nombreCompleto, String RUN, String genero, String carrera, String profesion, String grado) {
         if (validarRUN(RUN)) {
             System.out.println("Error: El RUN ya está registrado.");
             return null;
