@@ -50,22 +50,16 @@ public class Biblioteca {
 
             /*
             if (eleccion.equals("2")) {
-                ControladorLibros.solicitarDatosParaRegistrar();
             }
             if (eleccion.equals("3")) {
-                ControladorPrestamos.solicitarDatosYCrearPrestamo();
             }
             if (eleccion.equals("4")) {
-                ControladorSocios.imprimirSocios(ControladorSocios.obtener());
             }
             if (eleccion.equals("5")) {
-                ControladorLibros.imprimirLibros(ControladorLibros.obtener());
             }
             if (eleccion.equals("6")) {
-                ControladorPrestamos.imprimirPrestamos(ControladorPrestamos.obtener());
             }
             if (eleccion.equals("7")) {
-                ControladorSocios.imprimirSociosNoFiables(ControladorSocios.obtener());
             }*/
             if (eleccion.equals("7")) {
                 System.exit(0);
@@ -120,4 +114,3 @@ public class Biblioteca {
         System.out.println(listaLibros);
     }
 }
-
